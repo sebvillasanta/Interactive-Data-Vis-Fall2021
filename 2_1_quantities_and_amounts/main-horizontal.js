@@ -22,10 +22,9 @@ d3.csv('../data/squirrelActivities.csv', d3.autoType)
 
     const xAxis = g =>
       g
-      .attr("transform", `translate(0,0)`)
-      .call(d3.axisBottom(xScale).ticks(width / 100))
+      .attr("transform", `translate(0,0`)
+      .call(d3.axisTop(xScale).ticks(width / 80))
       .call(g => g.select(".domain").remove());
-
 
     const yScale = d3.scaleBand()
       .domain(data.map(d => d.activity))

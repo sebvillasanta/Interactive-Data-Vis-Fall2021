@@ -35,15 +35,21 @@ d3.csv("../data/owidCO2Data.csv", d3.autoType)
     //   .range([0, 30])   tried this but didn't work
 
     /* AXES */
-    const xAxis = d3.axisBottom(xScale)
-    svg.append("g")
-      .style("transform", `translate(0,${height - margin.bottom})`)
+    const xAxis = d3.axisBottom()
+      .scale(xScale);
+    const xAxisTranslate = height - margin
+
+    svg.append('g')
+      .attr('transform', `translate(0, ${xAxisTranslate})`)
       .call(xAxis);
 
-    const yAxis = d3.axisLeft(yScale)
-    svg.append("g")
-      .style("transform", `translate(${margin.left},0)`)
-      .call(yAxis);
+    const yAxis = d3.axisLeft()
+      .tickFormat(d3.format('~s'))
+      .scale(yScale);
+
+    svg.append('g')
+      .attr('transform', `translate(${margin}, 0)`)
+      .call(yAxis)
 
     /* HTML ELEMENTS */
     svg.selectAll(".dot")
@@ -54,6 +60,6 @@ d3.csv("../data/owidCO2Data.csv", d3.autoType)
       .attr("cy", d => yScale(d.gdp))
       .attr("r", radius)
       // .attr("area", sizeScale)
-      .style("fill", "blue")
+      .style("fill", "red")
 
   });

@@ -18,12 +18,11 @@ let co2 = {
 };
 
 /* LOAD DATA */
-d3.csv("../data/owidCO2Data.csv", d3.autoType).then(raw_data => {
+d3.csv("../data/owidCO2Data2019merged.csv", d3.autoType).then(raw_data => {
   // + SET YOUR DATA PATH
   console.log("data", raw_data);
-  const year = raw_data.filter(d => d.year === 2019)
   // save our data to application co2
-  co2.data = year;
+  co2.data = raw_data;
   init();
 });
 
@@ -36,7 +35,7 @@ xScale = d3.scaleLinear()
   .range([margin.left, width - margin.right])
 
 .yScale = d3.scaleLinear()
-  .domain(d3.extent(co2.data, d => d.gdp))
+  .domain(d3.extent(co2.data, d => d.2019))
   .range([height -margin.bottom, margin.bottom])
 
   // + AXES
